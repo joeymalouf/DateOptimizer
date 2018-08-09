@@ -11,6 +11,7 @@ using dateOptimizer.domain.interfaces;
 using dateOptimizer.domain.services;
 using Microsoft.EntityFrameworkCore;
 using dateOptimizer.data;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace dateOptimizer.web
 {
@@ -30,6 +31,11 @@ namespace dateOptimizer.web
             services.AddDbContext<DateOptimizerContext>(options => options.UseNpgsql("User Id=postgres;Password=jubjub67;Host=localhost;Port=5432;Database=dateOptimizer"));
             // Stay at bottom
             services.AddMvc();
+
+            services.AddSwaggerGen(c => 
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1"});
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +55,13 @@ namespace dateOptimizer.web
             }
 
             app.UseStaticFiles();
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseMvc(routes =>
             {
