@@ -1,11 +1,9 @@
 using System;
+using dateOptimizer.domain.DataTransferObjects;
 
 namespace dateOptimizer.domain.contracts {
-    public class IRepository : IDisposable
+    public interface IRepository : IDisposable
     {
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
+        DayRangeDto GetDayRange(int fip);
     }
 }

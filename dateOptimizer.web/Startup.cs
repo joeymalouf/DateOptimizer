@@ -12,6 +12,7 @@ using dateOptimizer.domain.services;
 using Microsoft.EntityFrameworkCore;
 using dateOptimizer.data;
 using Swashbuckle.AspNetCore.Swagger;
+using dateOptimizer.domain.contracts;
 
 namespace dateOptimizer.web
 {
@@ -29,6 +30,10 @@ namespace dateOptimizer.web
         {
             services.AddTransient<IWeatherService, WeatherService>(); // Dependency Injection
             services.AddDbContext<DateOptimizerContext>(options => options.UseNpgsql("User Id=postgres;Password=jubjub67;Host=localhost;Port=5432;Database=dateOptimizer"));
+            services.AddTransient<IDateService, DateService>();
+            services.AddTransient<IRepository, DateOptimizerRepository>();
+
+
             // Stay at bottom
             services.AddMvc();
 
