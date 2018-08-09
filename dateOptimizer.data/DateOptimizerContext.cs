@@ -13,7 +13,7 @@ namespace dateOptimizer.data
         // Inject in Startup
         public DateOptimizerContext(DbContextOptions<DateOptimizerContext> options) : base(options) { }
 
-        public DbSet<UsernamePasswordEntity> Credentials { get; set; }
+        public DbSet<DayRangeEntitity> AppraisalPercentages { get; set; }
 
         public string ProviderName => base.Database.ProviderName;
 
@@ -29,7 +29,7 @@ namespace dateOptimizer.data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<UsernamePasswordEntity>().HasKey(m => m.Username);
+            builder.Entity<DayRangeEntitity>().HasKey(m => m.Fip);
 
             base.OnModelCreating(builder);
         }

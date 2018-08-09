@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using dateOptimizer.domain.interfaces;
 using dateOptimizer.domain.services;
 using Microsoft.EntityFrameworkCore;
 using dateOptimizer.data;
@@ -28,7 +27,6 @@ namespace dateOptimizer.web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IWeatherService, WeatherService>(); // Dependency Injection
             services.AddDbContext<DateOptimizerContext>(options => options.UseNpgsql("User Id=postgres;Password=jubjub67;Host=localhost;Port=5432;Database=dateOptimizer"));
             services.AddTransient<IDateService, DateService>();
             services.AddTransient<IRepository, DateOptimizerRepository>();
@@ -37,9 +35,9 @@ namespace dateOptimizer.web
             // Stay at bottom
             services.AddMvc();
 
-            services.AddSwaggerGen(c => 
+            services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1"});
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
         }
 
@@ -64,8 +62,7 @@ namespace dateOptimizer.web
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-                c.RoutePrefix = string.Empty;
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Date Optimizer");
             });
 
             app.UseMvc(routes =>
@@ -78,6 +75,19 @@ namespace dateOptimizer.web
                     name: "spa-fallback",
                     defaults: new { controller = "Home", action = "Index" });
             });
+
+            bool seedOrNot = false;
+            if (seedOrNot)
+            {
+                using (var scope = app.ApplicationServices.CreateScope())
+                {
+                    // Adding test Client
+                    DateOptimizerContext context = (DateOptimizerContext)scope.ServiceProvider.GetService<DateOptimizerContext>();
+                    DateOptimizerRepository _repo = (DateOptimizerRepository)scope.ServiceProvider.GetService<IRepository>(); ;
+                    _repo.SeedDatabase();
+
+                }
+            }
         }
     }
 }

@@ -16,9 +16,28 @@ namespace dateOptimizer.domain.services
         public DayRangeDto GetDatesByFip(int fip)
         {
 
-            DayRangeDto DayRange = _repository.GetDayRange(fip);
+            FipInformationDto fipInfo = _repository.GetDayRange(fip);
+            int start = -1;
+            int end = -1;
+            for (int i = 0; i < fipInfo.Days.Length; i++) {
+                if (fipInfo.Days[i] > 0 && start == -1) {
+                    start = i;
+                }
+                if (fipInfo.Days[i] > .75 && end == -1) {
+                    end = i;
+                }
+            }
 
-            return DayRange;
+            int range = end - start;
+
+            var dayRange = new DayRangeDto() 
+            {
+                StartDay = start,
+                DayRange = range,
+            };
+
+
+            return dayRange;
         }
     }
 }

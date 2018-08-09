@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using dateOptimizer.domain.contracts;
 using Microsoft.AspNetCore.Http;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using Swashbuckle.AspNetCore;
 using dateOptimizer.domain.DataTransferObjects;
 
 namespace dateOptimizer.web
@@ -17,8 +18,9 @@ namespace dateOptimizer.web
         }
 
 
-        [HttpGet]
+        [HttpGet]   
         [Route("/api/Days/GetRange/{fip:int}")]
+        [SwaggerResponse(StatusCodes.Status200OK, typeof(DayRangeDto))]
         public ObjectResult GetDates(int fip) {
             DayRangeDto result = _dateService.GetDatesByFip(fip);
             return new OkObjectResult(result);          
