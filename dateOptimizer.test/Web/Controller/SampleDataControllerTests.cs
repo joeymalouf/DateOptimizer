@@ -1,6 +1,6 @@
-using System;
-using System.Linq;
-using myapp.web.Controllers;
+using Moq;
+using dateOptimizer.domain.interfaces;
+using dateOptimizer.web.Controllers;
 using Xunit;
 
 namespace myapp.test.web.controllers
@@ -8,32 +8,17 @@ namespace myapp.test.web.controllers
     public class SampleDataControllerTests
     {
         [Fact]
-        public void SampleDataController_WeatherForecasts_ShouldReturnFiveItems()
+        public void SampleDataController_WeatherForecasts_ShouldCallWeatherService()
         {
             // Arrange
-            var target = new SampleDataController();
-            
+            var mockWeatherService = new Mock<IWeatherService>();
+            var target = new SampleDataController(mockWeatherService.Object);
+
             // Act
-            var result = target.WeatherForecasts();
+            target.WeatherForecasts();
 
             // Assert
-            Assert.Equal(5, result.Count());
-        }
-
-        [Fact]
-        public void SampleDataController_WeatherForecasts_ForecastDataIsPopulated()
-        {
-            // Arrange
-            var target = new SampleDataController();
-            
-            // Act
-            var result = target.WeatherForecasts();
-
-            // Assert
-            Assert.NotNull(result.FirstOrDefault().DateFormatted);
-            Assert.NotNull(result.FirstOrDefault().Summary);
-            Assert.NotNull(result.FirstOrDefault().TemperatureC);
-            Assert.NotNull(result.FirstOrDefault().TemperatureF);
+            mockWeatherService.Verify(w => w.GetForecast(), Times.Once);
         }
     }
 }

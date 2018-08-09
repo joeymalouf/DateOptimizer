@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using dateOptimizer.domain.interfaces;
+using dateOptimizer.domain.services;
+using Microsoft.EntityFrameworkCore;
+using dateOptimizer.data;
 
 namespace dateOptimizer.web
 {
@@ -22,6 +26,9 @@ namespace dateOptimizer.web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IWeatherService, WeatherService>(); // Dependency Injection
+            services.AddDbContext<DateOptimizerContext>(options => options.UseNpgsql("User Id=postgres;Password=jubjub67;Host=localhost;Port=5432;Database=dateOptimizer"));
+            // Stay at bottom
             services.AddMvc();
         }
 

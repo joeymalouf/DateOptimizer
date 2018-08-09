@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dateOptimizer.web", "dateOp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dateOptimizer.test", "dateOptimizer.test\dateOptimizer.test.csproj", "{14D7FC32-BD68-475C-9D19-1EC0AF31EE57}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dateOptimizer.domain", "dateOptimizer.domain\dateOptimizer.domain.csproj", "{D618E2FA-9BA0-4402-88F4-D7161849D93A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{14D7FC32-BD68-475C-9D19-1EC0AF31EE57}.Release|x64.Build.0 = Release|x64
 		{14D7FC32-BD68-475C-9D19-1EC0AF31EE57}.Release|x86.ActiveCfg = Release|x86
 		{14D7FC32-BD68-475C-9D19-1EC0AF31EE57}.Release|x86.Build.0 = Release|x86
+		{D618E2FA-9BA0-4402-88F4-D7161849D93A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D618E2FA-9BA0-4402-88F4-D7161849D93A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D618E2FA-9BA0-4402-88F4-D7161849D93A}.Debug|x64.ActiveCfg = Debug|x64
+		{D618E2FA-9BA0-4402-88F4-D7161849D93A}.Debug|x64.Build.0 = Debug|x64
+		{D618E2FA-9BA0-4402-88F4-D7161849D93A}.Debug|x86.ActiveCfg = Debug|x86
+		{D618E2FA-9BA0-4402-88F4-D7161849D93A}.Debug|x86.Build.0 = Debug|x86
+		{D618E2FA-9BA0-4402-88F4-D7161849D93A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D618E2FA-9BA0-4402-88F4-D7161849D93A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D618E2FA-9BA0-4402-88F4-D7161849D93A}.Release|x64.ActiveCfg = Release|x64
+		{D618E2FA-9BA0-4402-88F4-D7161849D93A}.Release|x64.Build.0 = Release|x64
+		{D618E2FA-9BA0-4402-88F4-D7161849D93A}.Release|x86.ActiveCfg = Release|x86
+		{D618E2FA-9BA0-4402-88F4-D7161849D93A}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 EndGlobal
