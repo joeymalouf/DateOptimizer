@@ -1,9 +1,11 @@
 using System;
+using System.Threading.Tasks;
 using dateOptimizer.domain.DataTransferObjects;
 
 namespace dateOptimizer.domain.contracts {
     public interface IRepository : IDisposable
     {
-        FipInformationDto GetDayRange(int fip);
+        Task<FipInformationDto> GetDayRangeByFipAsync(int fip);
+        Task<FipInformationDto> GetDayRangeByCountyAsync(CountyDto county);
     }
 }

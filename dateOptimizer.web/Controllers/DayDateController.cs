@@ -19,11 +19,21 @@ namespace dateOptimizer.web
 
 
         [HttpGet]   
-        [Route("/api/Days/GetRange/{fip:int}")]
+        [Route("/api/Days/GetRangeByFip/{fip:int}")]
         [SwaggerResponse(StatusCodes.Status200OK, typeof(DayRangeDto))]
-        public ObjectResult GetDates(int fip) {
-            DayRangeDto result = _dateService.GetDatesByFip(fip);
+        public async Task<ObjectResult> GetDatesByFipAsync(int fip) {
+            DayRangeDto result = await _dateService.GetDatesByFipAsync(fip).ConfigureAwait(false);
+            return new OkObjectResult(result);          
+        }
+
+        [HttpPost]   
+        [Route("/api/Days/GetRangeByCounty/")]
+        [SwaggerResponse(StatusCodes.Status200OK, typeof(DayRangeDto))]
+        public async Task<ObjectResult> GetDatesByFipAsync([Bind][FromBody] CountyDto county) {
+            DayRangeDto result = await _dateService.GetDatesByCountyAsync(county).ConfigureAwait(false);
             return new OkObjectResult(result);          
         }
     }
+
+
 }

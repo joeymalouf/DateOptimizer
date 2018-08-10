@@ -1,7 +1,8 @@
-using Microsoft.EntityFrameworkCore;
+using System;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using dateOptimizer.data.entities;
-
+using Microsoft.EntityFrameworkCore;
 namespace dateOptimizer.data
 {
     public class DateOptimizerContext : DbContext
@@ -11,9 +12,13 @@ namespace dateOptimizer.data
             : this(new DbContextOptionsBuilder<DateOptimizerContext>().UseNpgsql("User Id=postgres;Password=jubjub67;Host=localhost;Port=5432;Database=dateOptimizer").Options) { }
 
         // Inject in Startup
-        public DateOptimizerContext(DbContextOptions<DateOptimizerContext> options) : base(options) { }
+        public DateOptimizerContext(DbContextOptions<DateOptimizerContext> options) : base(options)
+        { 
+            
+        }
 
         public DbSet<DayRangeEntitity> AppraisalPercentages { get; set; }
+        public DbSet<CountyInfoEntity> CountyInfo { get; set; }
 
         public string ProviderName => base.Database.ProviderName;
 

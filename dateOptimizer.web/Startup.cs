@@ -84,7 +84,20 @@ namespace dateOptimizer.web
                     // Adding test Client
                     DateOptimizerContext context = (DateOptimizerContext)scope.ServiceProvider.GetService<DateOptimizerContext>();
                     DateOptimizerRepository _repo = (DateOptimizerRepository)scope.ServiceProvider.GetService<IRepository>(); ;
-                    _repo.SeedDatabase();
+                    _repo.SeedDatabaseAppraisalPercentages();
+
+                }
+            }
+
+            seedOrNot = true;
+            if (seedOrNot)
+            {
+                using (var scope = app.ApplicationServices.CreateScope())
+                {
+                    // Adding test Client
+                    DateOptimizerContext context = (DateOptimizerContext)scope.ServiceProvider.GetService<DateOptimizerContext>();
+                    DateOptimizerRepository _repo = (DateOptimizerRepository)scope.ServiceProvider.GetService<IRepository>(); ;
+                    _repo.SeedDatabaseCountyInfo();
 
                 }
             }

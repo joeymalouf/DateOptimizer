@@ -5,6 +5,8 @@ namespace dateOptimizer.domain.contracts
 {
     public interface IDateService
     {
-        DayRangeDto GetDatesByFip(int fip);
+        Task<DayRangeDto> GetDatesByFipAsync(int fip);
+
+        Task<DayRangeDto> GetDatesByCountyAsync(CountyDto county);
     }
 }
